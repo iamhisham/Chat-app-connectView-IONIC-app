@@ -24,3 +24,13 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+ion-refresher {
+    background-color: #7c7899;
+    z-index: 0;
+
+    // display: block;
+    top: -3px;
+    padding-top: 25px;
+}

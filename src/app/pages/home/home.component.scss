@@ -1,0 +1,91 @@
+//for scroll css startws
+.subcontent-was-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.header-was-sticky {
+    top: -76px;
+}
+
+.animated-delay {
+    transition: 700ms;
+}
+
+//css starts
+
+ion-header {
+    ion-toolbar {
+        --background: #7c7899;
+        font-family: "Satisfy", cursive !important;
+        letter-spacing: 2px;
+        font-size: 2rem;
+        color: #fff;
+
+        ion-title {
+            // margin-top: 5px;
+            padding: 16px 0px 0px 0px;
+            font-size: 75% !important;
+        }
+
+    }
+}
+
+.makeFixed {
+    position: fixed !important;
+    top: 0 !important;
+    z-index: 11 !important;
+}
+
+ion-content {
+    --background: #7c7899;
+
+    .tabs {
+        font-family: "Nato Sans Hk", sans-serif;
+        width: 100%;
+        // padding-top: 0px;
+
+        ion-segment {
+            --background: none;
+
+            ion-segment-button {
+                font-size: 1rem;
+                --border-width: 0;
+                --border-color: transparent;
+                --padding-start: 8px !important;
+                --padding-bottom: 3px !important;
+                --padding-end: 8px !important;
+                --padding-top: 3px !important;
+                --background-checked: #feacac;
+                --color: #d1d1d1;
+                --border: red;
+                --color-checked: #fff;
+                font-weight: bold;
+                border-radius: 22px;
+                --indicator-height: 0px;
+            }
+        }
+    }
+}
+
+
+ion-fab-button.chat-fab::part(native) {
+    background-color: #feacac;
+    --color: #7c7899;
+    --border-radius: 15px;
+    --transition: 3s;
+}
+
+ion-fab-button {
+    --background: #7c7899;
+    --border-radius: 15px;
+    --background-activated: #7c7899;
+    --background-hover: #7c7899;
+
+    --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, .3), 0px 1px 3px 1px rgba(0, 0, 0, .15);
+    --color: #fff;
+    margin-top: 10px;
+    margin-left: 5px;
+}

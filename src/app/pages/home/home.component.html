@@ -1,3 +1,57 @@
-<p>
-  home works!
-</p>
+<ion-header class="ion-no-border " mode="ios" #header>
+  <ion-toolbar class="ion-no-padding ion-padding-horizontal ion-padding-top " style="    padding-top: 10px;
+  padding-bottom: 10px;">
+    <ion-icon name="menu-outline" slot="start"></ion-icon>
+    <ion-title>ConnectView</ion-title>
+    <ion-icon name="camera-outline" slot="end"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="true" scrollEvents="true" (ionScroll)='onContentScroll($event)'>
+  <ion-header #subcontent class="ion-no-border">
+    <ion-toolbar>
+      <div class="tabs ion-padding">
+        <ion-segment value="chats" (ionChange)="segmentChange($event)" mode="ios">
+          <ion-segment-button value="chats">
+            <ion-label>Chats</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="status">
+            <ion-label>Status</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="calls">
+            <ion-label>Calls</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+  <ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="60" [pullMax]="60" class="custom-refresher"
+    (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+      refreshingSpinner="circles"></ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="activeTab === 'chats'">
+    <app-chat></app-chat>
+  </div>
+
+  <ion-fab *ngIf="activeTab === 'chats'" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button class="chat-fab" style="height: 35px;width: 50px;">
+      <ion-icon name="add" class="add-icon"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top" style="margin: 0px 0px 50px 0px;">
+      <ion-fab-button id="open-modal">
+        <ion-icon name="person-add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button routerLink="/new-chats">
+        <ion-icon name="chatbubbles"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button *ngIf="backToTop" (click)="gotToTop()">
+        <ion-icon name="chevron-up"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-modal trigger="open-modal">
+    <ng-template>
+      <app-new-chats></app-new-chats>
+    </ng-template>
+  </ion-modal>
+</ion-content>
