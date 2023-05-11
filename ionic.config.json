@@ -1,0 +1,7 @@
+{
+  "name": "connectView",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
