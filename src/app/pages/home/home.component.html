@@ -10,7 +10,7 @@
   <ion-header #subcontent class="ion-no-border">
     <ion-toolbar>
       <div class="tabs ion-padding">
-        <ion-segment value="chats" (ionChange)="segmentChange($event)" mode="ios">
+        <ion-segment [(ngModel)]="pageView" (ionChange)="segmentChange($event)" mode="ios">
           <ion-segment-button value="chats">
             <ion-label>Chats</ion-label>
           </ion-segment-button>
@@ -32,6 +32,25 @@
   <div *ngIf="activeTab === 'chats'">
     <app-chat></app-chat>
   </div>
+
+  <swiper-container #swiper (slidechange)="onSlideChange($event)">
+    <!-- <h1>asd</h1> -->
+    <swiper-slide>
+      <ion-list id="chats" class="chats" class="sliding-list">
+        <app-chat></app-chat>
+      </ion-list>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-list class="sliding-list">
+        <app-status></app-status>
+      </ion-list>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-list class="sliding-list">
+        <!-- <app-calls></app-calls> -->
+      </ion-list>
+    </swiper-slide>
+  </swiper-container>
 
   <ion-fab *ngIf="activeTab === 'chats'" slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button class="chat-fab" style="height: 35px;width: 50px;">

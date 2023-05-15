@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   //scroll to top
   @ViewChild(IonContent) content: IonContent;
   backToTop: boolean = false;
+  pageView = 'chats';
   constructor(private chat_service: ChatServiceService, private platform: Platform, public renderer: Renderer2) { }
 
   ngOnInit() {
@@ -76,4 +77,19 @@ export class HomeComponent implements OnInit {
     this.scrollToTop(event);
   }
 
+  onSlideChange(event: any) {
+    switch (event.detail[0].activeIndex) {
+      case 0:
+        this.pageView = 'chats';
+        break
+      case 1:
+        this.pageView = 'status';
+        break
+      case 2:
+        this.pageView = 'calls';
+        break
+    }
+  }
 }
+
+
