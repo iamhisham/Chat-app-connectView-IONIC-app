@@ -1,4 +1,4 @@
-<ion-list>
+<ion-list class="chat">
   <ion-label>
     <h3 class="notification-title">Recent chats</h3>
   </ion-label>
@@ -16,7 +16,7 @@
     </ion-item>
   </ion-list>
   <ion-list *ngIf="!this.chat_service.isContentRefresher">
-    <ion-item detail="true" *ngFor="let show of details">
+    <ion-item detail="true" *ngFor="let show of [1,2,3]">
       <ion-thumbnail slot="start">
         <ion-skeleton-text [animated]="true"></ion-skeleton-text>
       </ion-thumbnail>
@@ -28,5 +28,3 @@
     </ion-item>
   </ion-list>
 </ion-list>
-
-<!-- (willDismiss)="onWillDismiss($event)" -->

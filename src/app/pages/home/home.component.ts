@@ -1,53 +1,53 @@
-import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { IonContent, Platform } from '@ionic/angular';
 import { ChatServiceService } from 'src/app/services/chat-service.service';
+import Swiper from 'swiper';
+import { register } from 'swiper/element/bundle';
+
+register();
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
-
-
-
-
-  activeTab: string = 'chats';
-  // hideheader when scroll
   @ViewChild("header") header: HTMLElement;
-  @ViewChild("subcontent") subcontent: HTMLElement;
 
   //scroll to top
-  @ViewChild(IonContent) content: IonContent;
+  @ViewChild('scrolllist') content: any;
   backToTop: boolean = false;
   pageView = 'chats';
+  isAdjustScreen: boolean;
   constructor(private chat_service: ChatServiceService, private platform: Platform, public renderer: Renderer2) { }
 
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+  }
+
   ionViewWillEnter() {
     this.renderer.addClass(this.header['el'], 'animated-delay');
-    this.renderer.addClass(this.subcontent['el'], 'animated-delay');
   }
+
 
   segmentChange(event: any) {
-    this.activeTab = event.target.value;
+    this.pageView = event.target.value;
   }
-
   //swipe down to refresh
-  handleRefresh(event?: any) {
-    this.chat_service.isContentRefresher = false;
-    setTimeout(() => {
-      // Any calls to load data go here
-      event.target.complete();
-      this.chat_service.isContentRefresher = true;
-    }, 2000);
-  };
+  // handleRefresh(event?: any) {
+  //   this.chat_service.isContentRefresher = false;
+  //   setTimeout(() => {
+  //     // Any calls to load data go here
+  //     event.target.complete();
+  //     this.chat_service.isContentRefresher = true;
+  //   }, 2000);
+  // };
 
   scrollToTop(event: any) {
-    if (event.detail.scrollTop > this.platform.height()) {
+    if (event.currentTarget.scrollTop > this.platform.height()) {
       this.backToTop = true;
     } else {
       this.backToTop = false;
@@ -59,37 +59,18 @@ export class HomeComponent implements OnInit {
   }
 
   onContentScroll(event: any) {
-    // 1) headerSet
-    if (event.detail.scrollTop >= 20) {
+    this.scrollToTop(event);
+
+    if (event.currentTarget.scrollTop >= 10) {
       // 20 above  // scroll up(initial)
-      this.renderer.setStyle(this.header['el'], 'top', '-76px');
+      this.renderer.setStyle(this.header['el'], 'top', '-70px');
+      this.isAdjustScreen = true;
     } else {
       //20 below // scroll down  //remove all
       this.renderer.setStyle(this.header['el'], 'top', '0px');
-      this.renderer.removeStyle(this.subcontent['el'], 'position');
-      this.renderer.removeStyle(this.subcontent['el'], 'top');
+      this.isAdjustScreen = false;
     }
-    // 2) subcontent
-    if (Math.floor(event.detail.scrollTop) >= 56) {
-      this.renderer.setStyle(this.subcontent['el'], 'position', 'sticky');
-      this.renderer.setStyle(this.subcontent['el'], 'top', '-68px');
-    }
-    this.scrollToTop(event);
   }
 
-  onSlideChange(event: any) {
-    switch (event.detail[0].activeIndex) {
-      case 0:
-        this.pageView = 'chats';
-        break
-      case 1:
-        this.pageView = 'status';
-        break
-      case 2:
-        this.pageView = 'calls';
-        break
-    }
-  }
 }
-
 

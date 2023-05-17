@@ -26,7 +26,8 @@ ion-header {
 
         ion-title {
             // margin-top: 5px;
-            padding: 16px 0px 0px 0px;
+            top: -5px;
+            padding: 0px 0px 0px 0px;
             font-size: 75% !important;
         }
 
@@ -40,32 +41,34 @@ ion-header {
 }
 
 ion-content {
-    --background: #7c7899;
+    --background: #fff;
 
-    .tabs {
-        font-family: "Nato Sans Hk", sans-serif;
-        width: 100%;
-        // padding-top: 0px;
 
-        ion-segment {
-            --background: none;
+}
 
-            ion-segment-button {
-                font-size: 1rem;
-                --border-width: 0;
-                --border-color: transparent;
-                --padding-start: 8px !important;
-                --padding-bottom: 3px !important;
-                --padding-end: 8px !important;
-                --padding-top: 3px !important;
-                --background-checked: #feacac;
-                --color: #d1d1d1;
-                --border: red;
-                --color-checked: #fff;
-                font-weight: bold;
-                border-radius: 22px;
-                --indicator-height: 0px;
-            }
+.tabs {
+    font-family: "Nato Sans Hk", sans-serif;
+    width: 100%;
+    // padding-top: 0px;
+
+    ion-segment {
+        --background: none;
+
+        ion-segment-button {
+            font-size: 1rem;
+            --border-width: 0;
+            --border-color: transparent;
+            --padding-start: 8px !important;
+            --padding-bottom: 3px !important;
+            --padding-end: 8px !important;
+            --padding-top: 3px !important;
+            --background-checked: #feacac;
+            --color: #d1d1d1;
+            --border: red;
+            --color-checked: #fff;
+            font-weight: bold;
+            border-radius: 22px;
+            --indicator-height: 0px;
         }
     }
 }
@@ -88,4 +91,11 @@ ion-fab-button {
     --color: #fff;
     margin-top: 10px;
     margin-left: 5px;
+}
+
+.animateMove {
+    transition: 1000ms;
+    overflow: scroll;
+    height: 100vh;
+    scroll-behavior: smooth;
 }

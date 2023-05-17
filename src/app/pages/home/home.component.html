@@ -1,58 +1,51 @@
-<ion-header class="ion-no-border " mode="ios" #header>
-  <ion-toolbar class="ion-no-padding ion-padding-horizontal ion-padding-top " style="    padding-top: 10px;
-  padding-bottom: 10px;">
-    <ion-icon name="menu-outline" slot="start"></ion-icon>
-    <ion-title>ConnectView</ion-title>
-    <ion-icon name="camera-outline" slot="end"></ion-icon>
-  </ion-toolbar>
-</ion-header>
-<ion-content fullscreen="true" scrollEvents="true" (ionScroll)='onContentScroll($event)'>
-  <ion-header #subcontent class="ion-no-border">
-    <ion-toolbar>
-      <div class="tabs ion-padding">
-        <ion-segment [(ngModel)]="pageView" (ionChange)="segmentChange($event)" mode="ios">
-          <ion-segment-button value="chats">
-            <ion-label>Chats</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="status">
-            <ion-label>Status</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="calls">
-            <ion-label>Calls</ion-label>
-          </ion-segment-button>
-        </ion-segment>
-      </div>
-    </ion-toolbar>
-  </ion-header>
-  <ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="60" [pullMax]="60" class="custom-refresher"
-    (ionRefresh)="handleRefresh($event)">
-    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
-      refreshingSpinner="circles"></ion-refresher-content>
-  </ion-refresher>
-  <div *ngIf="activeTab === 'chats'">
-    <app-chat></app-chat>
+<ion-content [fullscreen]="true" scrollY="false">
+  <div>
+    <ion-header class="ion-no-border " mode="ios" #header style="position: fixed;">
+      <ion-toolbar class="ion-no-padding  ion-padding-top " style="    padding-top: 10px;">
+        <ion-row class="ion-no-padding" style="width:100%">
+          <ion-col size="3" class="ion-no-padding ion-padding-left ion-text-center d-flex menu-wrapper">
+            <ion-icon name="menu-outline" class="ion-margin-left"></ion-icon>
+          </ion-col>
+          <ion-col size="6" class="ion-text-center d-flex ion-no-padding">
+            <ion-title>ConnectView</ion-title>
+          </ion-col>
+          <ion-col size="3" class="ion-no-padding ion-padding-right ion-text-center d-flex cam-wrapper">
+            <ion-icon name="camera-outline" class="ion-margin-right"></ion-icon>
+          </ion-col>
+          <ion-col class="ion-no-padding">
+            <div class="tabs ion-padding">
+              <ion-segment [(ngModel)]="pageView" (ionChange)="segmentChange($event)" mode="ios">
+                <ion-segment-button value="chats">
+                  <ion-label>Chats</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="status">
+                  <ion-label>Status</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="calls">
+                  <ion-label>Calls</ion-label>
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-toolbar>
+    </ion-header>
   </div>
 
-  <swiper-container #swiper (slidechange)="onSlideChange($event)">
-    <!-- <h1>asd</h1> -->
-    <swiper-slide>
-      <ion-list id="chats" class="chats" class="sliding-list">
-        <app-chat></app-chat>
-      </ion-list>
-    </swiper-slide>
-    <swiper-slide>
-      <ion-list class="sliding-list">
-        <app-status></app-status>
-      </ion-list>
-    </swiper-slide>
-    <swiper-slide>
-      <ion-list class="sliding-list">
-        <!-- <app-calls></app-calls> -->
-      </ion-list>
-    </swiper-slide>
-  </swiper-container>
+  <ion-list #scrolllist *ngIf="pageView=='chats'" (scroll)="onContentScroll($event)" class="animateMove"
+    [ngStyle]="!isAdjustScreen ? {'padding-top': '125px'} :{'padding-top': '63px'} ">
+    <app-chat></app-chat>
+  </ion-list>
+  <ion-list #scrolllist *ngIf="pageView=='status'" (scroll)="onContentScroll($event)" class="animateMove"
+    [ngStyle]="!isAdjustScreen ? {'padding-top': '125px'} :{'padding-top': '63px'} ">
+    <app-status></app-status>
+  </ion-list>
+  <ion-list #scrolllist *ngIf="pageView=='calls'" (scroll)="onContentScroll($event)" class="animateMove"
+    [ngStyle]="!isAdjustScreen ? {'padding-top': '125px'} :{'padding-top': '63px'} ">
+    <app-calls></app-calls>
+  </ion-list>
 
-  <ion-fab *ngIf="activeTab === 'chats'" slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab *ngIf="pageView === 'chats'" slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button class="chat-fab" style="height: 35px;width: 50px;">
       <ion-icon name="add" class="add-icon"></ion-icon>
     </ion-fab-button>

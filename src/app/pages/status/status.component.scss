@@ -1,0 +1,33 @@
+ion-list {
+    // background: rgb(237, 234, 229);
+    background: var(--ion-color-dark-contrast);
+    // background-color: burlywood;
+    border-radius: 12px 12px 0px 0px;
+    // padding-top: 125px;
+    // min-height: calc(100vh - 200px);
+
+    ion-item {
+        --background: var(--ion-color-dark-contrast);
+
+
+        h3 {
+            // color: #000;
+        }
+    }
+}
+
+.notification-title {
+    padding: 20px 0px 5px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: gray;
+    margin: 0px;
+}
+
+.chat-content {
+    padding-top: 0px;
+}
+
+.chat-profile {
+    border-radius: 10px;
+}

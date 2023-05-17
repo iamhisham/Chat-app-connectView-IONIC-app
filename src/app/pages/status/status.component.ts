@@ -8,7 +8,7 @@ import { ChatServiceService } from 'src/app/services/chat-service.service';
 })
 export class StatusComponent implements OnInit {
 
-  details = ['mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe'];
+  details = ['mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe', 'mohamed', 'jack', 'joe doe'];
   constructor(public chat_service: ChatServiceService) { }
 
   ngOnInit() { }
