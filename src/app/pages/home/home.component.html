@@ -13,16 +13,26 @@
             <ion-icon name="camera-outline" class="ion-margin-right"></ion-icon>
           </ion-col>
           <ion-col class="ion-no-padding">
-            <div class="tabs ion-padding">
-              <ion-segment [(ngModel)]="pageView" (ionChange)="segmentChange($event)" mode="ios">
+            <div class="tabs ion-padding ">
+              <ion-segment [(ngModel)]="pageView" (ionChange)="segmentChange($event)" mode="ios"
+                style="position: relative;">
+                <!-- <ion-segment-button value="camera" style="    max-width:20px;">
+                  <ion-icon name="camera-outline"></ion-icon>
+                </ion-segment-button> -->
                 <ion-segment-button value="chats">
                   <ion-label>Chats</ion-label>
                 </ion-segment-button>
                 <ion-segment-button value="status">
                   <ion-label>Status</ion-label>
                 </ion-segment-button>
-                <ion-segment-button value="calls">
-                  <ion-label>Calls</ion-label>
+                <ion-segment-button value="calls" style="position: relative;">
+                  <ion-label>
+                    Calls
+                    <ion-badge style="position: absolute;     right: -5px;
+                    top: 0px;
+                    background: #feacac8c;
+                    color: #feacac;" slot="end">0</ion-badge>
+                  </ion-label>
                 </ion-segment-button>
               </ion-segment>
             </div>
